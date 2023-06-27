@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'; // додаємо маршрутизацію
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import { Toaster } from 'react-hot-toast'; // додаємо сповіщення
+import { LoadingIndicator } from './SharedLayout/LoadingDots'; // додаємо індикатор завантаження
 
 const SharedLayout = lazy(() => import('./SharedLayout/SharedLayout')); // додаємо лейаут
 const Home = lazy(() => import('../pages/Home'));
@@ -12,19 +13,20 @@ const Reviews = lazy(() => import('./Reviews/Reviews'));
 export const App = () => {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Home />} />
-          <Route path="movies" element={<Movies />} />
-
-          {/* додаємо динамічний роут */}
-          <Route path="movies/:movieId" element={<MovieDetails />}>
-            <Route path="cast" element={<Cast />} />
-            <Route path="reviews" element={<Reviews />} />
+      <Suspense fallback={<LoadingIndicator />}>
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<Home />} />
+            <Route path="movies" element={<Movies />} />
+            {/* додаємо динамічний роут */}
+            <Route path="movies/:movieId" element={<MovieDetails />}>
+              <Route path="cast" element={<Cast />} />
+              <Route path="reviews" element={<Reviews />} />
+            </Route>
+            <Route path="*" element={<Navigate to="/" />} />
           </Route>
-          <Route path="*" element={<Navigate to="/" />} />
-        </Route>
-      </Routes>
+        </Routes>
+      </Suspense>
       <Toaster /> {/* додаємо сповіщення */}
     </>
   );

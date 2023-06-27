@@ -3,6 +3,7 @@ import { useSearchParams, useLocation } from 'react-router-dom'; // додаєм
 import { toast } from 'react-hot-toast'; // імпортуємо плагін для сповіщень
 import { fetchMovieByName } from '../services/api';
 import SearchMovies from '../components/SearchMovies/SearchMovies';
+import MovieList from 'components/MovieList/MovieList';
 import {
   List,
   ListItem,
@@ -41,7 +42,7 @@ const Movies = () => {
     };
 
     // додаємо запит на фільм
-      getMovie();
+    getMovie();
   }, [searchParams]);
 
   // додаємо функцію для пошуку фільму
@@ -53,19 +54,10 @@ const Movies = () => {
     <main>
       <StyledSection>
         <SectionTitle>Movies Page</SectionTitle>
-
-        <SearchMovies onSubmit={handleSubmit} /> {/* додаємо компонент для пошуку фільму */}
-
+        <SearchMovies onSubmit={handleSubmit} />{' '}
+        {/* додаємо компонент для пошуку фільму */}
         <List>
-          {movies.map(movie => (
-            <ListItem key={movie.id}>
-
-              {/* додаємо посилання на сторінку фільму */}
-              <StyledLink to={`/movies/${movie.id}`} state={{ from: location }}>
-                {movie.title}
-              </StyledLink>
-            </ListItem>
-          ))}
+          <MovieList trendingMovies={movies} />
         </List>
       </StyledSection>
     </main>
@@ -73,5 +65,3 @@ const Movies = () => {
 };
 
 export default Movies;
-
-// Діма Берестень
