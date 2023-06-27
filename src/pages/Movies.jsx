@@ -6,16 +6,14 @@ import SearchMovies from '../components/SearchMovies/SearchMovies';
 import MovieList from 'components/MovieList/MovieList';
 import {
   List,
-  ListItem,
   SectionTitle,
-  StyledLink,
   StyledSection,
 } from '../components/MovieList/MovieList.styled'; // імпортуємо стилі
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const location = useLocation();
+
 
   // додаємо запит на фільм
   useEffect(() => {
