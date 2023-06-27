@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams, useLocation } from 'react-router-dom'; // додаємо хук для роботи з параметрами URL
+import { useSearchParams } from 'react-router-dom'; // додаємо хук для роботи з параметрами URL
 import { toast } from 'react-hot-toast'; // імпортуємо плагін для сповіщень
 import { fetchMovieByName } from '../services/api';
 import SearchMovies from '../components/SearchMovies/SearchMovies';
