@@ -37,9 +37,9 @@ const MovieCard = ({ movie }) => {
     : 'Not rated yet';
 
   // додаємо перевірку на наявність заголовку
-  if (!title) {
-    return <LoadingIndicator />;
-  }
+  // if (!title) {
+  //   return <LoadingIndicator />;
+  // }
 
   return (
     <>
@@ -97,7 +97,7 @@ const MovieCard = ({ movie }) => {
 // додаємо перевірку на типи пропсів
 MovieCard.propTypes = {
   movie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
+    // title: PropTypes.string.isRequired,
     release_date: PropTypes.string.isRequired,
     poster_path: PropTypes.string.isRequired,
     vote_average: PropTypes.number,

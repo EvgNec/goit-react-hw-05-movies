@@ -1,21 +1,24 @@
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   StyledSection,
   StyledLink,
-  SectionTitle,
   List,
   ListItem,
 } from './MovieList.styled'; // додаємо стилі
 
+
+
+
 const MovieList = ({ trendingMovies }) => {
+  const location = useLocation();
   return (
     <StyledSection>
-      <SectionTitle>Trending today</SectionTitle>
-
       <List>
         {trendingMovies.map(trendingMovie => (
           <ListItem key={trendingMovie.id}>
-            <StyledLink to={`/movies/${trendingMovie.id}`}>
+            <StyledLink to={`/movies/${trendingMovie.id}`} state={{ from: location }}>
               {trendingMovie.title}
             </StyledLink>
           </ListItem>

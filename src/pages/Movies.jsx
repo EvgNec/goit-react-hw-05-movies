@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom'; // додаємо хук для роботи з параметрами URL
+import { useSearchParams, useLocation } from 'react-router-dom'; // додаємо хук для роботи з параметрами URL
 import { toast } from 'react-hot-toast'; // імпортуємо плагін для сповіщень
 import { fetchMovieByName } from '../services/api';
 import SearchMovies from '../components/SearchMovies/SearchMovies';
@@ -13,7 +13,7 @@ import {
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-
+const location = useLocation();
 
   // додаємо запит на фільм
   useEffect(() => {
@@ -52,10 +52,11 @@ const Movies = () => {
     <main>
       <StyledSection>
         <SectionTitle>Movies Page</SectionTitle>
-        <SearchMovies onSubmit={handleSubmit} />{' '}
-        {/* додаємо компонент для пошуку фільму */}
+
+        <SearchMovies onSubmit={handleSubmit} /> {/* додаємо компонент для пошуку фільму */}
+
         <List>
-          <MovieList trendingMovies={movies} />
+<MovieList trendingMovies={movies}  state={{ from: location }}/>
         </List>
       </StyledSection>
     </main>
