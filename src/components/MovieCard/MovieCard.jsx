@@ -13,7 +13,6 @@ import {
   MovieName,
   StyledLink,
 } from './MovieCard.styled'; // додаємо стилі
-import { LoadingIndicator } from 'components/SharedLayout/LoadingDots'; // додаємо індикатор завантаження
 
 const MovieCard = ({ movie }) => {
   const { title, release_date, poster_path, vote_average, overview, genres } =
